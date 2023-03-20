@@ -1,0 +1,39 @@
+{% extends "index.html" %}
+{% block content %}
+<h1>Welcome, JARED</h1>
+<h3>All posted recipes:</h3>
+<!-- for loop the tabel
+created conditionals for Actions
+link actions -->
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Under</th>
+            <th>Posted By</th>
+            <th>Actions</th>
+            <th><button class="button" ><a id="create"href="/recipe/add">Create+ </a></button></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for recipe in all_recipes %}
+        <tr>
+            <td>{{recipe.name}}</td>
+            {% if recipe.under == 1 %}
+            <td>yes</td>
+            {% else %}
+            <td>no</td>
+            {% endif %}
+            <td>{{recipe.posting_user.first_name}} {{recipe.posting_user.last_name}}</td>
+            <td>
+                <a href="/recipe/view/{{recipe.id}}">View </a>  
+                {% if recipe.posting_user.id == session.id %}
+                <a href="/recipe/edit/{{recipe.id}}">| Edit |</a>  
+                <a href="/recipe/delete/{{recipe.id}}">Delete</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}         
+    </tbody>
+</table>
+{% endblock %}

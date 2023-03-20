@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+{% block content %}
+<h1>Welcome, JARED</h1>
+<p>posted by: {{recipe.posting_user.first_name}} {{recipe.posting_user.last_name}}</p>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">{{recipe.name}}</h4>
+        <div class="card-info">
+            <h6 class="card-subtitle">Description:</h6>
+            <p class="card-text">
+                {{recipe.description}}
+            </p>
+            <h6 class="card-subtitle">Instructions:</h6>
+            <p class="card-text">
+                {{recipe.instructions}}
+            </p>
+            <h6 class="card-subtitle">Date Made:</h6>
+            <p class="card-text">
+                {{recipe.date_cooked}}
+            </p>
+            <h6 class="card-subtitle">Under 30 minute?</h6>
+            <p class="card-text">
+                {% if recipe.under == 1 %}
+                yes
+                {% else %}
+                no
+                {% endif %}
+            </p>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

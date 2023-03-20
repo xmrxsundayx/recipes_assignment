@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+{% block content %}
+<h1>Edit Recipe!</h1>
+<!-- conditional "description must not be blank" -->
+<form action="/recipe/new_edit/{{recipe.id}}" method = 'POST'>
+    <input type="hidden" name="id" value="{{recipe.id}}">
+    <label for="recipe_name" >Name</label><br>
+    <input type="text" name="name"><br>
+    <label for="recipe_description">Description</label><br>
+    <textarea type="text" name="description"></textarea><br>
+    <label for="recipe_instructions">Instructions</label><br>
+    <textarea type="text" name="instructions"></textarea><br>
+    <label for="recipe_created">Date Cooked/Made:</label><br>
+    <input type="datetime-local" name="date_cooked"><br>
+    <label for="recipe_under">Under 30 minutes?</label><br>
+    <label for="yes">Yes</label>
+    <input type="radio" name="under" value="1">
+    <label for="no">No</label>
+    <input type="radio" name="under" value="0"><br>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <input type="submit" value="submit">
+</form>
+{% endblock %}
