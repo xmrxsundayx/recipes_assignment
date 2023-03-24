@@ -30,7 +30,6 @@ def welcome(id):
         flash('Invalid User ID', 'login')
         return redirect('/')
     all_recipes = recipe_mod.Recipes.get_all()
-    
     return render_template('recipe_wall.html',user_in_DB= user_in_DB, all_recipes=all_recipes)
 
 # *****RECIPE ACTIONS*****
@@ -42,8 +41,12 @@ def let_me_see(id):
     data = {
         'id': id
     }
+    user_data = {
+        'id': session['id']
+    }
     recipe = recipe_mod.Recipes.get_by_id(data)
-    return render_template('view_recipe.html',recipe = recipe)
+    one_user = users_mod.Users.get_user_by_id(user_data)
+    return render_template('view_recipe.html',recipe = recipe, one_user= one_user)
 
 
 # *****ADD*****

@@ -1,6 +1,6 @@
 {% extends "index.html" %}
 {% block content %}
-<h1>Welcome, JARED</h1>
+<h1>Welcome, {{one_user.first_name}}</h1>
 <p>posted by: {{recipe.posting_user.first_name}} {{recipe.posting_user.last_name}}</p>
 <div class="card">
     <div class="card-body">

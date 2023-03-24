@@ -75,19 +75,18 @@ class Recipes:
                     recipes.id = %(id)s
                     ;"""
         result = connectToMySQL(cls.DB).query_db(query,data)
-        for row in result: 
-            one_recipe = cls(row)
-            posting_user ={
-                'id': row['user_id'],
-                'first_name': row['first_name'],
-                'last_name': row['last_name'],
-                'email': row['email'],
-                'password': row['password'],
-                'created_at': row['users.created_at'],
-                'updated_at': row['users.updated_at']
+        one_recipe = cls(result[0])
+        posting_user ={
+            'id': result[0]['users.id'],
+            'first_name': result[0]['first_name'],
+            'last_name': result[0]['last_name'],
+            'email': result[0]['email'],
+            'password': result[0]['password'],
+            'created_at': result[0]['users.created_at'],
+            'updated_at': result[0]['users.updated_at']
         }
-            one_recipe.posting_user = users_mod.Users(posting_user)
-            print(one_recipe.posting_user.first_name)
+        one_recipe.posting_user = users_mod.Users(posting_user)
+        print(one_recipe.posting_user.first_name)
         return one_recipe
 
     @classmethod
