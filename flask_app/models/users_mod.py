@@ -41,6 +41,8 @@ class Users:
                     email = %(email)s
                     ;"""
         result = connectToMySQL(cls.DB).query_db(query,data)
+        if len(result)<1:
+            return False
         return cls(result[0])
 
 
